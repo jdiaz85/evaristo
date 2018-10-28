@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 inherit eutils versionator
@@ -18,7 +19,7 @@ then
 else
 	# upstream stable
 	KEYWORDS="~amd64 ~x86"
-	SRC_URI="https://download.jetbrains.com/idea/${MY_PN}IU-${MY_PV}.tar.gz -> ${MY_PN}IU-${PV_STRING}.tar.gz"
+	SRC_URI="https://download.jetbrains.com/idea/${MY_PN}IU-${MY_PV}.tar.gz"
 fi
 
 DESCRIPTION="A complete toolset for web, mobile and enterprise development"
@@ -32,7 +33,12 @@ DEPEND="!dev-util/${PN}:14
 	!dev-util/${PN}:15"
 RDEPEND="${DEPEND}
 	>=virtual/jdk-1.7:*"
-S="${WORKDIR}/${MY_PN}-IU-${PV_STRING}"
+if [[ "${PV_STRING}x" = "x" ]]
+then
+	S="${WORKDIR}/${MY_PN}-IU-${MY_PV}"
+else
+	S="${WORKDIR}/${MY_PN}-IU-${PV_STRING}"
+fi
 
 QA_PREBUILT="opt/${PN}-${MY_PV}/*"
 
@@ -65,12 +71,6 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}"/bin/{idea.sh,fsnotifier{,64}}
-
-	if use custom-jdk; then
-		if [[ -d jre ]]; then
-		fperms 755 "${dir}"/jre/jre/bin/{java,jjs,keytool,orbd,pack200,policytool,rmid,rmiregistry,servertool,tnameserv,unpack200}
-		fi
-	fi
 
 	make_wrapper "${PN}" "${dir}/bin/${MY_PN}.sh"
 	newicon "bin/${MY_PN}.png" "${PN}.png"
