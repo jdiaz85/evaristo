@@ -1,8 +1,8 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit eutils versionator gnome2-utils readme.gentoo-r1 xdg
+EAPI=5
+inherit eutils versionator
 
 DESCRIPTION="Intelligent Python IDE with unique code assistance and analysis"
 HOMEPAGE="http://www.jetbrains.com/pycharm/"
@@ -33,7 +33,7 @@ QA_PREBUILT="opt/${PN}/bin/fsnotifier
 	opt/${PN}/bin/libyjpagent-linux64.so"
 
 MY_PN=${PN/-professional/}
-S="${WORKDIR}/${MY_PN}-${PV}"
+S="${WORKDIR}/${MY_PN}-${MY_PV}"
 
 src_prepare() {
 	default
