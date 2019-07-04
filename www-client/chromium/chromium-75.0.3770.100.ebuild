@@ -137,13 +137,17 @@ GTK+ icon theme.
 "
 
 PATCHES=(
-	"${FILESDIR}/chromium-compiler-r7.patch"
-	"${FILESDIR}/chromium-widevine-r3.patch"
-	"${FILESDIR}/chromium-webrtc-r0.patch"
-	"${FILESDIR}/chromium-memcpy-r0.patch"
-	"${FILESDIR}/chromium-math.h-r0.patch"
-	"${FILESDIR}/chromium-stdint.patch"
-	"${FILESDIR}/chromium-harfbuzz-r0.patch"
+	"${FILESDIR}/chromium-compiler-r9.patch"
+	"${FILESDIR}/chromium-widevine-r4.patch"
+	"${FILESDIR}/chromium-fix-char_traits.patch"
+	"${FILESDIR}/chromium-angle-inline.patch"
+	"${FILESDIR}/chromium-75-fix-gn-gen.patch"
+	"${FILESDIR}/chromium-75-gcc-angle-fix.patch"
+	"${FILESDIR}/chromium-75-unique_ptr.patch"
+	"${FILESDIR}/chromium-75-lss.patch"
+	"${FILESDIR}/chromium-75-noexcept.patch"
+	"${FILESDIR}/chromium-75-llvm8.patch"
+	"${FILESDIR}/chromium-75-pure-virtual.patch"
 )
 
 pre_build_checks() {
